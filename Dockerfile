@@ -21,7 +21,7 @@ ENV MYSQL_HOST 10.0.224.6
 ENV MYSQL_USER_NAME music
 ENV MYSQL_PASSWORD Music2021
 ENV DATABASE_NAME music
-ENV APPLICATION_PORT 8888
+ENV APPLICATION_PORT 80
 
 # 安装依赖包，如需其他依赖包，请到alpine依赖包管理(https://pkgs.alpinelinux.org/packages?name=php8*imagick*&branch=v3.13)查找。
 RUN apk add --update --no-cache openjdk11-jre-base \
@@ -34,7 +34,7 @@ WORKDIR /app
 COPY --from=build /app/target/music-0.0.1.jar .
 
 # 暴露端口
-EXPOSE 8888
+EXPOSE 80
 
 # 执行启动命令
 CMD ["java", "-jar", "/app/music-0.0.1.jar", "--spring.profiles.active=test"]
